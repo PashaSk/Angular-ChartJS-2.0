@@ -6,9 +6,9 @@
 
 (function() {
     angular.module('ps.chartjs', [])
-        .directive("psChart",[psChart]);
+        .directive("psChart",["$timeout", psChart]);
 
-    function psChart() {
+    function psChart($timeout) {
         return {
             restrict: "A",
             scope: {
@@ -21,6 +21,7 @@
             link: function($scope, element, attrs) {
                 var ctx = element[0].getContext("2d");
                 var chartObj = {};
+                var isInitial = true;
 
                 if ($scope.chartShow == undefined) {
                     initChart();
@@ -31,14 +32,21 @@
                 });
 
                 function initChart() {
-                    chartObj = new Chart(ctx, {
-                        type: $scope.chartType,
-                        data: $scope.chartData,
-                        options: $scope.options || {}
-                    });
 
-                    if ($scope.chartObj) {
-                        $scope.chartObj = chartObj;
+                    isInitial ? $timeout(init) : init();
+
+                    function init() {
+                        chartObj = new Chart(ctx, {
+                            type: $scope.chartType,
+                            data: $scope.chartData,
+                            options: $scope.chartOptions
+                        });
+
+                        if ($scope.chartObj) {
+                            $scope.chartObj = chartObj;
+                        }
+
+                        isInitial = false;
                     }
                 }
 

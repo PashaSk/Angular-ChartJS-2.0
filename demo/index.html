@@ -2,50 +2,49 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Angualar ChartJS 2.0 Example</title>
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<title>Angular ChartJS 2.0 Example</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 	<script src="js/vendor/Chart.min.js"></script>
 	<script src="../src/ps.chartjs.directive.js"></script>
+	<link rel="stylesheet" href="css/main.css">
 	<script>
 		angular.module('myModule', ['ps.chartjs'])
 				.controller("myController", ["$scope", "$timeout", function($scope, $timeout) {
-					$scope.options = {
-						responsive: true,
-						maintainAspectRatio: false
-					};
 
-					$scope.Chart = {API: {}};
+						$scope.options = {
+							responsive: true,
+							maintainAspectRatio: false
+						};
 
-					$scope.data = {
-						labels: [1, 4, 5, 1, 3, 10],
-						datasets: [{
-							label: "foo",
-							backgroundColor: 'rgba(255,204,51,0.8)',
-							hoverBackgroundColor: 'rgba(255,204,51,1)',
-							borderColor: 'rgba(255,204,51,1 )',
-							hoverBorderColor: 'rgba(255,204,51,1 )',
-							data: [50, 23, 10, 200, 30, 40]
-						}, {
-							label: "bar",
-							backgroundColor: 'rgba(239,130,32,0.8)',
-							hoverBackgroundColor: 'rgba(239,111,32,1)',
-							borderColor: 'rgba(239,130,32,0.8)',
-							hoverBorderColor: 'rgba(239,111,32,1)',
-							data: [1, 2, 3, 55, 77, 10]
-						}]
-					};
+						$scope.Chart = {API: {}};
 
-					$timeout(function() {
-						console.log($scope.Chart)
-					});
+						$scope.data = {
+							type: "bar",
+							labels: [1, 4, 5, 1, 3, 10],
+							datasets: [{
+								label: "foo",
+								backgroundColor: 'rgba(255,204,51,0.8)',
+								hoverBackgroundColor: 'rgb(255,204,51)',
+								borderColor: 'rgba(255,204,51,1 )',
+								hoverBorderColor: 'rgba(255,204,51,1 )',
+								data: [50, 23, 10, 200, 30, 40]
+							}, {
+								label: "bar",
+								backgroundColor: 'rgba(239,130,32,0.8)',
+								hoverBackgroundColor: 'rgba(255,111,32)',
+								borderColor: 'rgba(239,130,32,0.8)',
+								hoverBorderColor: 'rgba(239,111,32,1)',
+								data: [1, 2, 3, 55, 77, 10]
+							}]
+						};
+
 
 				}]);
 	</script>
-	<link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-app="myModule" ng-controller="myController">
-	<div class="my_chart">
+	<div style="width: 400px;height: 400px;">
 		<canvas ps-chart
 				chart-type="bar"
 				chart-data="data"
