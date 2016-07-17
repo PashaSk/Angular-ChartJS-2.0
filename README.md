@@ -1,4 +1,6 @@
 # Angular-ChartJS-2.0
+[![Build Status](https://travis-ci.org/PashaSk/Angular-ChartJS-2.0.svg?branch=master)](https://travis-ci.org/PashaSk/Angular-ChartJS-2.0)
+
 Simple and flexible angular directive for charting with ChartJS 2.0
 
 ##Usage Example:
