@@ -23,6 +23,10 @@
                 var chartObj = {};
                 var isInitial = true;
 
+                if ($scope.chartType == undefined) {
+                    throw new Error('No chart type specified')
+                }
+
                 if ($scope.chartShow == undefined) {
                     initChart();
                 }
@@ -51,8 +55,11 @@
                 }
 
                 function destroyChart() {
+                    console.log("destroeing the cahrt");
                     if (chartObj.destroy != undefined)  chartObj.destroy();
                 }
+
+                $scope.destroyChart = destroyChart;
             }
         }
     }
